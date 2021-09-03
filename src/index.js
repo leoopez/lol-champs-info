@@ -3,6 +3,11 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from "./components/App";
 
+window.onunload = () => {
+  // Clear the local storage
+  window.MyStorage.clear();
+};
+
 ReactDOM.render(<App />, document.getElementById("root"));
 
 // If you want to start measuring performance in your app, pass a function

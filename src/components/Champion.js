@@ -1,30 +1,51 @@
 /** @format */
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 
-import { loadingJSON } from "./../config";
+import { loadingJSON, extraInfoChamp } from "./../config";
+
+import InfoChamp from "./InfoChamp";
+// const loadJSON = key => key && JSON.parse(localStorage.getItem(key));
+// const saveJSON = (key, data) => localStorage.setItem(key, JSON.stringify(data));
 
 export default function Champion({ name, info }) {
+  const [data, setData] = useState(null);
+  const [error, setError] = useState();
+
+  const onClick = async () => {
+    try {
+      const moreInfo = await fetch(extraInfoChamp(name)).then(res =>
+        res.json()
+      );
+      setData(moreInfo);
+    } catch (error) {
+      setError(error);
+    }
+  };
+
   return (
-    <div className='champion-card'>
-      <img className='cc-img' src={loadingJSON(name)} alt={name} />
-      <div className='cc-container'>
-        <div className='cc-assets'></div>
-        <div className='cc-info'>
-          <h2 className='cc-name'>{info.name}</h2>
-          <p className='cc-text'>{info.title}</p>
-          <div className='tags'>
-            {info.tags.map((tag, i) => (
-              <span key={i} className={`tag tag-${tag}`}>
-                {tag}
-              </span>
-            ))}
+    <>
+      {data && <InfoChamp info={data.data[name]} />}
+      <div className='champion-card'>
+        <img className='cc-img' src={loadingJSON(name)} alt={name} />
+        <div className='cc-container'>
+          <div className='cc-assets'></div>
+          <div className='cc-info'>
+            <h2 className='cc-name'>{info.name}</h2>
+            <p className='cc-text'>{info.title}</p>
+            <div className='tags'>
+              {info.tags.map((tag, i) => (
+                <span key={i} className={`tag tag-${tag}`}>
+                  {tag}
+                </span>
+              ))}
+            </div>
+            <button onClick={onClick} className='btn-more'>
+              More
+            </button>
           </div>
-          <button onClick={() => console.dir(info)} className='btn-more'>
-            More
-          </button>
         </div>
       </div>
-    </div>
+    </>
   );
 }
 

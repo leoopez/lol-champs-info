@@ -129,6 +129,17 @@
 .tag-Support {
     background-color: #862e9c;
 }
+
+.champ--info {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: blanchedalmond;
+    z-index: 10;
+    padding: 2rem;
+}
 @media (hover) {
     .champion-card:hover .cc-container,
     .champion-card:focus-within .cc-container{
