@@ -1,5 +1,5 @@
 /** @format */
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 import { loadingJSON } from "./../config";
 
@@ -8,17 +8,20 @@ export default function Champion({ name, info }) {
     <div className='champion-card'>
       <img className='cc-img' src={loadingJSON(name)} alt={name} />
       <div className='cc-container'>
-        <div className='cc-assets'>
-          <div>
-            {info.tags.map((tag, i) => (
-              <div key={i}>{tag}</div>
-            ))}
-          </div>
-        </div>
+        <div className='cc-assets'></div>
         <div className='cc-info'>
           <h2 className='cc-name'>{info.name}</h2>
           <p className='cc-text'>{info.title}</p>
-          <button className='btn-more'>More</button>
+          <div className='tags'>
+            {info.tags.map((tag, i) => (
+              <span key={i} className={`tag tag-${tag}`}>
+                {tag}
+              </span>
+            ))}
+          </div>
+          <button onClick={() => console.dir(info)} className='btn-more'>
+            More
+          </button>
         </div>
       </div>
     </div>
