@@ -1,15 +1,14 @@
 /** @format */
 
-import React, { useEffect } from "react";
+import React from "react";
 import useFetch from "../hooks/useFetch";
 import Champion from "./Champion";
 
-export default function Champions() {
-  const { loading, data, error } = useFetch(
-    "http://ddragon.leagueoflegends.com/cdn/11.16.1/data/en_US/champion.json"
-  );
+import { championsJSON } from "../config";
 
-  useEffect(() => {}, [loading]);
+export default function Champions() {
+  const { loading, data, error } = useFetch(championsJSON);
+
   if (loading) return <h1>Loading...</h1>;
   if (error) return <pre>{JSON.stringify(error)}</pre>;
 

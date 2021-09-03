@@ -83,6 +83,10 @@
     padding: 0.5rem 1rem;   
 }
 
+.btn-more {
+    cursor: pointer;
+}
+
 @media (hover) {
     .champion-card:hover .cc-container,
     .champion-card:focus-within .cc-container{
