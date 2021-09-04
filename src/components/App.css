@@ -130,7 +130,7 @@
     background-color: #862e9c;
 }
 
-.champ--info {
+.card__info--champ{
     position: absolute;
     top: 0;
     left: 0;

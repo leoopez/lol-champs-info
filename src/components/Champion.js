@@ -1,13 +1,12 @@
 /** @format */
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import { loadingJSON, extraInfoChamp } from "./../config";
 
-import InfoChamp from "./InfoChamp";
 // const loadJSON = key => key && JSON.parse(localStorage.getItem(key));
 // const saveJSON = (key, data) => localStorage.setItem(key, JSON.stringify(data));
 
-export default function Champion({ name, info }) {
+export default function Champion({ name, info, onChange = f => f }) {
   const [data, setData] = useState(null);
   const [error, setError] = useState();
 
@@ -22,30 +21,35 @@ export default function Champion({ name, info }) {
     }
   };
 
+  useEffect(() => {
+    if (!data) return;
+    onChange(data.data[name]);
+  }, [data, onChange, name]);
+
+  useEffect(() => {
+    if (!error) return;
+  }, [error]);
   return (
-    <>
-      {data && <InfoChamp info={data.data[name]} />}
-      <div className='champion-card'>
-        <img className='cc-img' src={loadingJSON(name)} alt={name} />
-        <div className='cc-container'>
-          <div className='cc-assets'></div>
-          <div className='cc-info'>
-            <h2 className='cc-name'>{info.name}</h2>
-            <p className='cc-text'>{info.title}</p>
-            <div className='tags'>
-              {info.tags.map((tag, i) => (
-                <span key={i} className={`tag tag-${tag}`}>
-                  {tag}
-                </span>
-              ))}
-            </div>
-            <button onClick={onClick} className='btn-more'>
-              More
-            </button>
+    <div className='champion-card'>
+      <img className='cc-img' src={loadingJSON(name)} alt={name} />
+      <div className='cc-container'>
+        <div className='cc-assets'></div>
+        <div className='cc-info'>
+          <h2 className='cc-name'>{info.name}</h2>
+          <p className='cc-text'>{info.title}</p>
+          <div className='tags'>
+            {info.tags.map((tag, i) => (
+              <span key={i} className={`tag tag-${tag}`}>
+                {tag}
+              </span>
+            ))}
           </div>
+          <button onClick={onClick} className='btn-more'>
+            More
+          </button>
         </div>
       </div>
-    </>
+    </div>
   );
 }
 
