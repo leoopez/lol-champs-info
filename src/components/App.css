@@ -32,7 +32,7 @@
     width: inherit;
     height: inherit;
     z-index: -1;
-    opacity: 0.5;
+    opacity: 0.8;
     transition: transform 500ms ease; 
 }
 
@@ -152,7 +152,7 @@
 }
 
 .cic__spells {
-    grid-area: spells
+    grid-area: spells;
 }
 
 .cic__info {
@@ -181,6 +181,43 @@
     color: black
 }
 
+.info--bars {
+    display: flex;
+    justify-content: space-around;
+}
+.info--bar {
+    width: 2rem;
+    height: 0.3rem;
+    background-color: gray;
+}
+
+.bar--on {
+    background-color: blue;
+}
+
+.attack {
+    background-color: red;
+}
+
+.magic {
+    background-color: blue;
+}
+
+.defense{
+    background-color: green;
+}
+
+.difficulty {
+    background-color: black;
+}
+
+.cic__spell{
+    display:flex;
+}
+
+.cic__passive {
+    display: flex;
+}
 @media (hover) {
     .champion-card:hover .cc-container,
     .champion-card:focus-within .cc-container{

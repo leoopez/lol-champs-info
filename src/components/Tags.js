@@ -10,8 +10,8 @@ export default function Tags({ tags }) {
 const Tag = ({ tag }) => {
   return (
     <div>
-      <p>role</p>
-      <div>{tag}</div>
+      <h3>role</h3>
+      <div className={`tag tag-${tag}`}>{tag}</div>
     </div>
   );
 };
