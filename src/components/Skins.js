@@ -6,10 +6,10 @@ import { loadingJSON } from "./../config";
 
 export default function Skins({ skins, name }) {
   console.log(skins);
-  const renderSkins = skins.map((skin, i) => (
-    <Skin key={i} num={skin.num} name={name} />
-  ));
-  return renderSkins;
+  const renderSkins = skins
+    .slice(1)
+    .map((skin, i) => <Skin key={i} num={skin.num} name={name} />);
+  return <div className='cic__skins'>{renderSkins}</div>;
 }
 
 const Skin = ({ name, num }) => {

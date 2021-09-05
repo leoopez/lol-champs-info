@@ -4,12 +4,13 @@ import React from "react";
 
 export default function Info({ info }) {
   return (
-    <div>
+    <div className='cic__info'>
+      <p>General Info</p>
       <ul>
-        <li>{info.attack}</li>
-        <li>{info.defense}</li>
-        <li>{info.magic}</li>
-        <li>{info.difficulty}</li>
+        <li>Attack: {info.attack}</li>
+        <li>Defense: {info.defense}</li>
+        <li>Magic: {info.magic}</li>
+        <li>Difficulty {info.difficulty}</li>
       </ul>
     </div>
   );

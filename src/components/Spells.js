@@ -8,7 +8,13 @@ export default function Spells({ spells }) {
   const renderSpells = spells.map((spell, i) => (
     <Spell key={i} spell={spell} />
   ));
-  return renderSpells;
+  return (
+    <div className='cic__spells'>
+      <p>Spells</p>
+      {renderSpells};
+    </div>
+  );
+    
 }
 
 const Spell = ({ spell }) => {
